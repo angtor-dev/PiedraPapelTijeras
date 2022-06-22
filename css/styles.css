@@ -1,0 +1,160 @@
+*, *::before, *::after {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+html {
+	--body-color: #08f79c;
+}
+
+body {
+	height: 100vh;
+	background-color: var(--body-color);
+	font-family: 'Quicksand', sans-serif;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+main {
+	width: min(100vh, 100vw);
+	height: min(100vh, 100vw);
+	display: grid;
+	grid-template-rows: 1fr 1fr 1fr;
+}
+
+/*Computer Card*/
+#computerOption {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+    align-items: flex-end;
+}
+
+#computerOption > div {
+	width: min(20vw, 20vh);
+	height: min(25vw, 25vh);
+	background-color: #f0f0f0;
+	border: min(1vw, 1vh) solid gray;
+	border-radius: min(3vw, 3vh);
+	transition: box-shadow .3s, transform .3s;
+	display: none;
+}
+
+#computerOption > div.show {
+	display: block;
+}
+
+#computerOption > div span {
+	display: flex;
+	width: 100%;
+	height: 20%;
+	font-family: 'Quicksand', sans-serif;
+	font-size: min(3.7vw, 3.7vh);
+	font-weight: bold;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+#computerOption > div .svg-wrapper {
+	display: flex;
+	width: 101%;
+	height: 80%;
+	justify-content: center;
+	align-items: center;
+	border-top: min(1vw, 1vh) solid grey;
+}
+
+#computerOption > div svg {
+	height: 60%;
+	fill: black;
+	transform: rotate(180deg)
+}
+
+#computerOption > div.tijera svg {
+	transform: rotate(270deg) scaleY(-1);
+}
+
+/*User Cards*/
+#userOptions {
+	display: flex;
+	width: 100%;
+	justify-content: space-evenly;
+    align-items: flex-start;
+}
+
+#userOptions button {
+	width: min(20vw, 20vh);
+	height: min(25vw, 25vh);
+	border: min(1vw, 1vh) solid gray;
+	border-radius: min(3vw, 3vh);
+	transition: box-shadow .2s, transform .2s;
+	cursor: pointer;
+}
+
+#userOptions button:hover {
+	box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0px rgba(0, 0, 0, .4);
+	transform: translateY(max(-2vw, -2vh));
+}
+
+#userOptions button:active {
+	background-color: white;
+	border: min(1vw, 1vh) solid #9f9f9f;
+}
+
+#userOptions button:active span {
+	color: #404040;
+}
+
+#userOptions button:active .svg-wrapper {
+	border-top: min(1vw, 1vh) solid #9f9f9f;
+}
+
+#userOptions button:active svg {
+	fill: #404040;
+}
+
+#userOptions button span {
+	display: flex;
+	width: 100%;
+	height: 20%;
+	font-family: 'Quicksand', sans-serif;
+	font-size: min(3.7vw, 3.7vh);
+	font-weight: bold;
+	text-align: center;
+	justify-content: center;
+	align-items: center;
+}
+
+#userOptions button .svg-wrapper {
+	display: flex;
+	width: 101%;
+	height: 80%;
+	justify-content: center;
+	align-items: center;
+	border-top: min(1vw, 1vh) solid grey;
+}
+
+#userOptions button svg {
+	height: 60%;
+	fill: black;
+}
+
+#userOptions button#tijera svg {
+	transform: rotate(90deg) scaleY(-1);
+}
+
+/*Resultado*/
+#result {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+#result span {
+	font-size: min(16vw, 16vh);
+	font-weight: 700;
+	color: #035d3b;
+}
