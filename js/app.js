@@ -1,6 +1,19 @@
+// Elementos
 const userOptions = document.querySelectorAll('#userOptions button')
 const resultDisplay = document.querySelector('#result span')
+const winDisplay = document.getElementById('v')
+const drawDisplay = document.getElementById('e')
+const loseDisplay = document.getElementById('d')
 
+// Variables
+var wins = 0
+var draws = 0
+var loses = 0
+
+// Inicializar
+updateScore()
+
+// Al pulsar una carta
 userOptions.forEach(card => card.addEventListener('click', (e) => {
     let userChoise = e.currentTarget.id
     let computerChoise = generateComputerChoise()
@@ -35,14 +48,18 @@ function getResult(userChoise, computerChoise) {
     let result
     if (userChoise === computerChoise) {
         result = 'Empate'
+        draws++
     } else if ((userChoise == 'piedra' && computerChoise == 'tijera') ||
                (userChoise == 'papel' && computerChoise == 'piedra') ||
                (userChoise == 'tijera' && computerChoise == 'papel'))
     {
-        result = 'Ganaste'
+        result = 'Victoria'
+        wins++
     } else {
-        result = 'Perdiste'
+        result = 'Derrota'
+        loses++
     }
+    updateScore()
 
     return result
 }
@@ -92,4 +109,10 @@ function showResult(result) {
 	
 	//cambia el resultado a mitad de la animación
 	setTimeout(() => resultDisplay.textContent = result, 250)
+}
+
+function updateScore() {	
+	winDisplay.textContent = wins
+	drawDisplay.textContent = draws
+	loseDisplay.textContent = loses
 }
