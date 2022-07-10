@@ -354,6 +354,126 @@ footer {
 	bottom: min(.6vw, .6vh);
 }
 
+/**** Media Queries ****/
+@media screen and (orientation: portrait) {
+	/* Puntuación */
+	.score-wrapper {
+		bottom: unset;
+		align-items: unset;
+		right: 0;
+		justify-content: center;
+	}
+
+	.score-wrapper .score {
+		padding-left: unset;
+		transform: unset;
+		width: min(79vw, 79vh);
+		height: min(18vw, 18vh);
+		border: min(1vw, 1vh) solid grey;
+		border-top: 0 solid transparent;
+		border-radius: 0 0 min(8vw, 8vh) min(8vw, 8vh);
+		flex-direction: row;
+	}
+
+	/* Menu */
+	.menu-wrapper {
+		left: 0;
+	}
+
+	#main-menu {
+		right: unset;
+		top: 5vw;
+		padding: 4vw 0;
+		width: 90vw;
+		border: 1vw solid grey;
+		border-bottom: 0 solid transparent;
+		border-radius: 10vw 10vw 0 0;
+		transform: translateY(100vh);
+		transition: transform .3s;
+		box-shadow: 0 0 4vw 0 rgba(0, 0, 0, .3);
+	}
+
+	.d-block {
+		display: flex !important;
+		justify-content: center;
+	}
+
+	.menu-wrapper.open #main-menu {
+		transform: translateY(0);
+	}
+
+	.btn {
+		margin: 0 4vw;
+		padding: 4vw 6vw;
+		font-size: 8vw;
+		border-radius: 4vw;
+		transform: translateY(2vw);
+	}
+
+	.btn:hover {
+		box-shadow: 0 2vw 2vw 0 rgba(0, 0, 0, .1);
+	}
+
+	.btn:active {
+		transform: translateY(2vw);
+	}
+
+	.btn-menu-wrapper {
+		flex-direction: column;
+		align-items: center;
+		top: unset;
+		right: 0;
+		bottom: 0;
+		left: 0;
+	}
+
+	#btn-menu {
+		width: min(11vw, 11vh);
+		height: min(9vw, 9vh);
+		border: min(1vw, 1vh) solid grey;
+		border-bottom: 0 solid transparent;
+		border-radius: min(5vw, 5vh) min(5vw, 5vh) 0 0;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0 rgba(0, 0, 0, .3);
+	}
+
+	/* Submenus */
+	.submenu {
+		top: 5vw;
+		right: unset;
+		padding: 4vw 0;
+		width: 90vw;
+		border: min(1vw, 1vh) solid grey;
+		border-bottom: 0 solid transparent;
+		border-radius: 10vw 10vw 0 0;
+		transform: translateY(100vh);
+		transition: transform .3s;
+	}
+
+	.submenu.open {
+		transform: translateY(0);
+	}
+
+	#estadisticas h3 {
+		margin: 0 10vw;
+		font-size: 7.6vw;
+		line-height: 16vw;
+	}
+
+	#estadisticas .estadistica {
+		padding: 0 10vw;
+		font-size: 6.4vw;
+		line-height: 8.4vw;
+	}
+
+	/* Footer */
+	footer {
+		bottom: min(9.8vw, 9.8vh);
+	}
+}
+
 /* Animaciones */
 @keyframes fadeout {
 	from {
