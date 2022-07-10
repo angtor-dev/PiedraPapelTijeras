@@ -25,6 +25,10 @@ main {
 	grid-template-rows: 1fr 1fr 1fr;
 }
 
+.d-block {
+	display: block !important;
+}
+
 /*Computer Card*/
 #computerOption {
 	display: flex;
@@ -101,7 +105,7 @@ main {
 }
 
 #userOptions button:hover {
-	box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0px rgba(0, 0, 0, .4);
+	box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0 rgba(0, 0, 0, .3);
 	transform: translateY(max(-2vw, -2vh));
 }
 
@@ -161,7 +165,7 @@ main {
 
 #result span {
 	font-size: min(16vw, 16vh);
-	font-weight: 700;
+	font-weight: bold;
 	color: #035d3b;
 	animation-duration: .5s;
 	animation-timing-function: ease-in-out;
@@ -174,29 +178,30 @@ main {
 	top: 0;
 	left: 0;
 	bottom: 0;
-	background-color: transparent;
 	display: flex;
 	align-items: center;
 }
 
 .score-wrapper .score {
 	display: flex;
-	width: min(16vw, 16vh);
+	width: min(18vw, 18vh);
 	height: min(79vw, 79vh);
+	padding-left: min(2vw, 2vh);
 	background-color: white;
+	border: min(1vw, 1vh) solid grey;
+	border-left: 0 solid transparent;
 	border-radius: 0 min(8vw, 8vh) min(8vw, 8vh) 0;
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-evenly;
-	border: min(1vw, 1vh) solid grey;
-	border-left: 0px solid transparent;
-	box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0px rgba(0, 0, 0, .4);
+	box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0 rgba(0, 0, 0, .3);
+	transform: translateX(max(-2vw, -2vh));
 }
 
 .score-wrapper .score > div {
 	display: flex;
 	font-size: min(4vw, 4vh);
-	font-weight: 900;
+	font-weight: bold;
 	flex-direction: column;
 	align-items: center;
 }
@@ -213,9 +218,135 @@ main {
 	color: #bf0000;
 }
 
+/* Menu */
+.menu-wrapper {
+	display: none;
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	/*left: 0;*/
+	background-color: rgba(0, 0, 0, .0);
+	z-index: 1;
+	transition: background-color .3s;
+}
+
+.menu-wrapper.open {
+	background-color: rgba(0, 0, 0, .3);
+}
+
+#main-menu {
+	display: flex;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: min(2vw, 2vh) 0;
+	width: min(50vw, 50vh);
+	flex-direction: column;
+	background-color: #f0f0f0;
+	border-left: min(1vw, 1vh) solid grey;
+	transform: translateX(min(50vw, 50vh));
+	transition: transform .3s;
+	box-shadow: max(-1vw, -1vh) 0 min(2vw, 2vh) 0 rgba(0, 0, 0, .3);
+	overflow-y: auto;
+}
+
+.menu-wrapper.open #main-menu {
+	transform: translateX(0);
+}
+
+.btn {
+	display: flex;
+	margin: 0 min(2vw, 2vh);
+	padding: min(2vw, 2vh) min(3vw, 3vh);
+	font-size: min(4vw, 4vh);
+	font-weight: 700;
+	border-radius: min(2vw, 2vh);
+	align-items: center;
+	cursor: pointer;
+	transform: translateY(min(1vw, 1vh));
+	transition: .3s;
+}
+
+.btn:hover {
+	background-color: #fff;
+	color: #303030;
+	transform: translateY(0);
+	box-shadow: 0 min(1vw, 1vh) min(1vw, 1vh) 0 rgba(0, 0, 0, .1);
+}
+
+.btn:active {
+	transform: translateY(min(1vw, 1vh));
+	box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+	transition: .1s;
+}
+
+.btn-menu-wrapper {
+	position: fixed;
+	display: flex;
+	align-items: center;
+	top: 0;
+	right: 0;
+	bottom: 0;
+}
+
+#btn-menu {
+	display: flex;
+	width: min(9vw, 9vh);
+	height: min(11vw, 11vh);
+	background-color: #f0f0f0;
+	border: min(1vw, 1vh) solid grey;
+	border-right: 0 solid transparent;
+	border-radius: min(5vw, 5vh) 0 0 min(5vw, 5vh);
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+	box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0 rgba(0, 0, 0, .3);
+}
+
+/* Submenus */
+.submenu {
+	display: flex;
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	padding: min(2vw, 2vh) 0;
+	width: min(50vw, 50vh);
+	flex-direction: column;
+	background-color: #f0f0f0;
+	border-left: min(1vw, 1vh) solid grey;
+	transform: translateX(min(50vw, 50vh));
+	transition: transform .3s;
+}
+
+#estadisticas h3 {
+	margin: 0 min(5vw, 5vh);
+	font-size: min(3.8vw, 3.8vh);
+	line-height: min(8vw, 8vh);
+}
+
+#estadisticas .estadistica {
+	display: flex;
+	padding: 0 min(5vw, 5vh);
+	font-size: min(3.2vw, 3.2vh);
+	line-height: min(4.2vw, 4.2vh);
+	font-weight: 500;
+	justify-content: space-between;
+}
+
+#estadisticas .estadistica:nth-child(odd) {
+	background-color: #fff;
+}
+
+.submenu.open {
+	transform: translateX(0);
+}
+
 /* Footer */
 footer {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	color: #035d3b;
 	font-size: min(3vw, 3vh);

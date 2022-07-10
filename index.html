@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Piedra, Papel o Tijeras</title>
+	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,6 +64,45 @@
 				<span class="d">D</span>
 				<span id="d">0</span>
 			</div>
+		</div>
+	</div>
+
+	<div class="menu-wrapper">
+		<div id="main-menu">
+			<div class="btn btn-menu cerrar">
+				Cerrar
+			</div>
+			<div class="btn btn-menu sub" data-id="estadisticas">
+				Estadisticas
+			</div>
+			<div class="btn btn-menu sub" data-id="logros">
+				Logros
+			</div>
+			<div class="btn btn-menu sub" data-id="temas">
+				Temas
+			</div>
+			<div class="btn btn-menu sub" data-id="opciones">
+				Opciones
+			</div>
+		</div>
+
+		<div class="submenu estadisticas" id="estadisticas">
+			<div class="btn btn-estadisticas volver">
+				volver
+			</div>
+			<h3>Estadisticas</h3>
+			<p class="estadistica">Partidas jugadas: <span id="std-partidas">0</span></p>
+			<p class="estadistica">Victorias: <span id="std-victorias">0</span></p>
+			<p class="estadistica">Empates: <span id="std-empates">0</span></p>
+			<p class="estadistica">Derrotas: <span id="std-derrotas">0</span></p>
+			<p class="estadistica" title="Racha de victorias actual">Racha de vic. actual: <span id="std-rachaVic">0</span></p>
+			<p class="estadistica" title="Racha de victorias más alta en esta sesión">Racha de vic. más alta: <span id="std-rachaVicMax">0</span></p>
+		</div>
+	</div>
+
+	<div class="btn-menu-wrapper">
+		<div id="btn-menu">
+			<span>X</span>
 		</div>
 	</div>
 

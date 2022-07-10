@@ -4,23 +4,42 @@ const resultDisplay = document.querySelector('#result span')
 const winDisplay = document.getElementById('v')
 const drawDisplay = document.getElementById('e')
 const loseDisplay = document.getElementById('d')
+const menuWrapper = document.querySelector('.menu-wrapper')
+const submenus = document.querySelectorAll('.submenu')
+const submenuButtons = document.querySelectorAll('.btn.btn-menu.sub')
+const backButtons = document.querySelectorAll('.btn.volver')
 
 // Variables
-var wins = 0
-var draws = 0
-var loses = 0
+var result = "" //guarda el ultimo resultado de la partida
+
+const Estadisticas = {
+	get partidas() {return this.victorias + this.empates + this.derrotas},
+	victorias: 0,
+	empates: 0,
+	derrotas: 0,
+	rachaVic: 0,
+	rachaVicMax: 0
+}
 
 // Inicializar
 updateScore()
+menuWrapper.addEventListener('click', closeMenu)
+document.getElementById('btn-menu').addEventListener('click', openMenu)
+document.querySelector('.btn.btn-menu.cerrar').addEventListener('click', closeMenu)
+document.getElementById('main-menu').addEventListener('click', (e) => e.stopPropagation())
+submenus.forEach(submenu => submenu.addEventListener('click', (e) => e.stopPropagation())) // Detener propagacion en los submenus
+backButtons.forEach(button => button.addEventListener('click', closeSubmenu))
+submenuButtons.forEach(button => button.addEventListener('click', openSubmenu))
 
-// Al pulsar una carta
+	// Al pulsar una carta
 userOptions.forEach(card => card.addEventListener('click', (e) => {
     let userChoise = e.currentTarget.id
     let computerChoise = generateComputerChoise()
-    let result = getResult(userChoise, computerChoise)
+    result = getResult(userChoise, computerChoise)
 
     showCard(computerChoise)
     showResult(result)
+    updateStats()
 }))
 
 function generateComputerChoise() {
@@ -45,23 +64,30 @@ function generateComputerChoise() {
 }
 
 function getResult(userChoise, computerChoise) {
-    let result
+    let r
     if (userChoise === computerChoise) {
-        result = 'Empate'
-        draws++
-    } else if ((userChoise == 'piedra' && computerChoise == 'tijera') ||
-               (userChoise == 'papel' && computerChoise == 'piedra') ||
-               (userChoise == 'tijera' && computerChoise == 'papel'))
-    {
-        result = 'Victoria'
-        wins++
+        r = 'Empate'
+        Estadisticas.empates++
+        Estadisticas.rachaVic = 0
+    } else if ((userChoise == 'piedra' && computerChoise == 'tijera') || (userChoise == 'papel' && computerChoise == 'piedra') || (userChoise == 'tijera' && computerChoise == 'papel')) {
+        r = 'Victoria'
+        if (result == r) {
+        	Estadisticas.rachaVic++
+        	if (Estadisticas.rachaVic > Estadisticas.rachaVicMax) {
+        		Estadisticas.rachaVicMax = Estadisticas.rachaVic
+        	}
+        } else {
+        	Estadisticas.rachaVic = 1
+        }
+        Estadisticas.victorias++
     } else {
-        result = 'Derrota'
-        loses++
+        r = 'Derrota'
+        Estadisticas.derrotas++
+        Estadisticas.rachaVic = 0
     }
     updateScore()
 
-    return result
+    return r
 }
 
 function showCard(computerChoise) {
@@ -112,7 +138,43 @@ function showResult(result) {
 }
 
 function updateScore() {	
-	winDisplay.textContent = wins
-	drawDisplay.textContent = draws
-	loseDisplay.textContent = loses
+	winDisplay.textContent = Estadisticas.victorias
+	drawDisplay.textContent = Estadisticas.empates
+	loseDisplay.textContent = Estadisticas.derrotas
+}
+
+function openMenu() {
+	menuWrapper.classList.add('d-block')
+	setTimeout(function() {
+		menuWrapper.classList.add('open')
+	}, 1);
+}
+
+function closeMenu() {
+	// Primero cierra los submenus abiertos
+	const openSubmenus = document.querySelectorAll('.submenu.open')
+	openSubmenus.forEach(submenu => submenu.classList.remove('open'))
+	// Cierra el menu principal
+	menuWrapper.classList.remove('open')
+	// Elimina el bloque al terminar la animación
+	setTimeout(function() {
+		menuWrapper.classList.remove('d-block')
+	}, 300);
+}
+
+function openSubmenu() {
+	let id = this.dataset.id
+	const submenu = document.getElementById(id)
+	submenu.classList.add('open')
+}
+
+function closeSubmenu() {
+	const submenu = this.parentNode
+	submenu.classList.remove('open')
+}
+
+function updateStats() {
+	for (estadistica in Estadisticas) {
+		document.getElementById('std-'+estadistica).textContent = Estadisticas[estadistica];
+	}
 }
