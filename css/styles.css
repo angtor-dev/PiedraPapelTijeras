@@ -50,12 +50,20 @@ main {
 	animation-timing-function: ease-in-out;
 }
 
-#computerOption .piedra, #computerOption .papel, #computerOption .tijera {
+#computerOption > div .svg {
+	display: flex;
+	width: 100%;
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+#computerOption > div .svg.piedra, #computerOption > div .svg.papel, #computerOption > div .svg.tijera {
 	display: none;
 }
 
-#computerOption > div .show {
-	display: block;
+#computerOption > div .svg.show {
+	display: flex;
 }
 
 #computerOption > div span {
@@ -85,7 +93,7 @@ main {
 	transform: rotate(180deg)
 }
 
-#computerOption > div svg.tijera {
+#computerOption > div .tijera svg {
 	transform: rotate(270deg) scaleY(-1);
 }
 
