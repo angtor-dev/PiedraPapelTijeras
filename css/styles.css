@@ -89,7 +89,7 @@ main {
 
 #computerOption > div svg {
 	height: 60%;
-	fill: black;
+	color: black;
 	transform: rotate(180deg)
 }
 
@@ -133,7 +133,7 @@ main {
 }
 
 #userOptions button:active svg {
-	fill: #404040;
+	color: #404040;
 }
 
 #userOptions button span {
@@ -159,7 +159,7 @@ main {
 
 #userOptions button svg {
 	height: 60%;
-	fill: black;
+	color: black;
 }
 
 #userOptions button#tijera svg {
@@ -274,6 +274,7 @@ main {
 	font-weight: 700;
 	border-radius: min(2vw, 2vh);
 	align-items: center;
+	justify-content: space-between;
 	cursor: pointer;
 	transform: translateY(min(1vw, 1vh));
 	transition: .3s;
@@ -313,6 +314,22 @@ main {
 	justify-content: center;
 	cursor: pointer;
 	box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0 rgba(0, 0, 0, .3);
+	transition: width .3s, height .3s;
+}
+
+#btn-menu:hover {
+	width: min(12vw, 12vh);
+	height: min(11vw, 11vh);
+}
+
+#btn-menu span {
+	font-size: min(4.5vw, 4.5vh);
+	transition: margin-right .3s, margin-bottom .3s;
+}
+
+#btn-menu:hover span {
+	margin-right: min(2vw, 2vh);
+	margin-bottom: unset;
 }
 
 /* Submenus */
@@ -519,6 +536,20 @@ footer {
 		justify-content: center;
 		cursor: pointer;
 		box-shadow: 0 min(2vw, 2vh) min(2vw, 2vh) 0 rgba(0, 0, 0, .3);
+	}
+
+	#btn-menu:hover {
+		width: min(14vw, 14vh);
+		height: min(15vw, 15vh);
+	}
+
+	#btn-menu span {
+		font-size: min(5vw, 5vh);
+	}
+
+	#btn-menu:hover span {
+		margin-right: unset;
+		margin-bottom: min(2.5vw, 2.5vh);
 	}
 
 	/* Submenus */
