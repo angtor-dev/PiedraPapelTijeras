@@ -14,15 +14,36 @@ var result = "" //guarda el ultimo resultado de la partida
 
 const Estadisticas = {
 	get partidas() {return this.victorias + this.empates + this.derrotas},
+	get totalPartidas() {return this.totalVictorias + this.totalEmpates + this.totalDerrotas},
 	victorias: 0,
+	totalVictorias: 0,
 	empates: 0,
+	totalEmpates: 0,
 	derrotas: 0,
+	totalDerrotas: 0,
 	rachaVic: 0,
-	rachaVicMax: 0
+	rachaVicMax: 0,
+	totalRachaVicMax: 0,
 }
 
+const opcionesPredeterminadas = Object.freeze({
+	showTotalScore: false,
+	darkMode: false
+})
+
+let opcionesLocal = localStorage.opciones
+if (opcionesLocal !== undefined) {
+	opcionesLocal = JSON.parse(opcionesLocal)
+}
+
+const Opciones = opcionesLocal ?? opcionesPredeterminadas //Si no hay opciones guardadas se cargan las predeterminadas
+
 // Inicializar
+loadStats()
+updateStats()
 updateScore()
+updateOptions()
+// Agregar eventos
 menuWrapper.addEventListener('click', closeMenu)
 document.getElementById('btn-menu').addEventListener('click', openMenu)
 document.querySelector('.btn.btn-menu.cerrar').addEventListener('click', closeMenu)
@@ -30,6 +51,7 @@ document.getElementById('main-menu').addEventListener('click', (e) => e.stopProp
 submenus.forEach(submenu => submenu.addEventListener('click', (e) => e.stopPropagation())) // Detener propagacion en los submenus
 backButtons.forEach(button => button.addEventListener('click', closeSubmenu))
 submenuButtons.forEach(button => button.addEventListener('click', openSubmenu))
+document.querySelectorAll('.btn-opciones.toggle').forEach(button => button.addEventListener('click', toggleOption))
 
 	// Al pulsar una carta
 userOptions.forEach(card => card.addEventListener('click', (e) => {
@@ -68,6 +90,7 @@ function getResult(userChoise, computerChoise) {
     if (userChoise === computerChoise) {
         r = 'Empate'
         Estadisticas.empates++
+        Estadisticas.totalEmpates++
         Estadisticas.rachaVic = 0
     } else if ((userChoise == 'piedra' && computerChoise == 'tijera') || (userChoise == 'papel' && computerChoise == 'piedra') || (userChoise == 'tijera' && computerChoise == 'papel')) {
         r = 'Victoria'
@@ -75,14 +98,19 @@ function getResult(userChoise, computerChoise) {
         	Estadisticas.rachaVic++
         	if (Estadisticas.rachaVic > Estadisticas.rachaVicMax) {
         		Estadisticas.rachaVicMax = Estadisticas.rachaVic
+        		if (Estadisticas.rachaVicMax > Estadisticas.totalRachaVicMax) {
+        			Estadisticas.totalRachaVicMax = Estadisticas.rachaVicMax
+        		}
         	}
         } else {
         	Estadisticas.rachaVic = 1
         }
         Estadisticas.victorias++
+        Estadisticas.totalVictorias++
     } else {
         r = 'Derrota'
         Estadisticas.derrotas++
+        Estadisticas.totalDerrotas++
         Estadisticas.rachaVic = 0
     }
     updateScore()
@@ -137,10 +165,17 @@ function showResult(result) {
 	setTimeout(() => resultDisplay.textContent = result, 250)
 }
 
-function updateScore() {	
-	winDisplay.textContent = Estadisticas.victorias
-	drawDisplay.textContent = Estadisticas.empates
-	loseDisplay.textContent = Estadisticas.derrotas
+function updateScore() {
+	if (Opciones.showTotalScore) {
+		winDisplay.textContent = Estadisticas.totalVictorias
+		drawDisplay.textContent = Estadisticas.totalEmpates
+		loseDisplay.textContent = Estadisticas.totalDerrotas
+	} else {
+		winDisplay.textContent = Estadisticas.victorias
+		drawDisplay.textContent = Estadisticas.empates
+		loseDisplay.textContent = Estadisticas.derrotas
+	}
+	
 }
 
 function openMenu() {
@@ -173,8 +208,42 @@ function closeSubmenu() {
 	submenu.classList.remove('open')
 }
 
+function loadStats() {
+	if (localStorage.estadisticas !== undefined) {
+		let estadisticas = localStorage.estadisticas
+		estadisticas = JSON.parse(estadisticas)
+
+		Estadisticas.totalVictorias   = estadisticas.totalVictorias
+		Estadisticas.totalEmpates     = estadisticas.totalEmpates
+		Estadisticas.totalDerrotas    = estadisticas.totalDerrotas
+		Estadisticas.totalRachaVicMax = estadisticas.totalRachaVicMax
+	}
+}
+
 function updateStats() {
 	for (estadistica in Estadisticas) {
 		document.getElementById('std-'+estadistica).textContent = Estadisticas[estadistica];
+	}
+    localStorage.estadisticas = JSON.stringify(Estadisticas)
+}
+
+function updateOptions() {
+	let toggles = document.querySelectorAll('.btn-opciones.toggle')
+	for (button of toggles) {
+		let opcion = button.dataset.opcion
+		if (Opciones[opcion]) {
+			button.querySelector('.valor .toggle').classList.add('active')
+		}
+	}
+}
+
+function toggleOption() {
+	this.querySelector('.valor .toggle').classList.toggle('active')
+	let opcion = this.dataset.opcion
+	Opciones[opcion] = !Opciones[opcion]
+	localStorage.opciones = JSON.stringify(Opciones)
+
+	if (opcion == "showTotalScore") {
+		updateScore()
 	}
 }

@@ -7,6 +7,8 @@
 
 html {
 	--body-color: #08f79c;
+	--body-color2: #fd746c;
+	--body-gradient: linear-gradient(to right, #ff9068, #fd746c);;
 }
 
 body {
@@ -166,7 +168,7 @@ main {
 #result span {
 	font-size: min(16vw, 16vh);
 	font-weight: bold;
-	color: #035d3b;
+	color: rgba(0, 0, 0, .5);
 	animation-duration: .5s;
 	animation-timing-function: ease-in-out;
 	z-index: -1;
@@ -319,12 +321,28 @@ main {
 	border-left: min(1vw, 1vh) solid grey;
 	transform: translateX(min(50vw, 50vh));
 	transition: transform .3s;
+	overflow-y: auto;
 }
 
-#estadisticas h3 {
+.submenu.open {
+	transform: translateX(0);
+}
+
+.submenu h3 {
 	margin: 0 min(5vw, 5vh);
 	font-size: min(3.8vw, 3.8vh);
 	line-height: min(8vw, 8vh);
+}
+
+#estadisticas h4 {
+	margin: 0 min(5vw, 5vh);
+	font-size: min(3.2vw, 3.2vh);
+	line-height: min(4.2vw, 4.2vh);
+	font-weight: 700;
+}
+
+#estadisticas h4:nth-child(even) {
+	padding-top: min(2vw, 2vh);
 }
 
 #estadisticas .estadistica {
@@ -336,19 +354,75 @@ main {
 	justify-content: space-between;
 }
 
-#estadisticas .estadistica:nth-child(odd) {
+#estadisticas .estadistica:nth-child(even) {
 	background-color: #fff;
 }
 
-.submenu.open {
-	transform: translateX(0);
+#opciones .btn-opciones {
+	display: grid;
+	padding: min(2vw, 2vh) min(3vw, 3vh);
+	grid-template-columns: 1fr min(10vw, 10vh);
+	cursor: pointer;
+}
+
+#opciones .btn-opciones:hover {
+	background-color: #fff;
+}
+
+#opciones .btn-opciones .texto {
+	padding-right: min(1vw, 1vh);
+}
+
+#opciones .btn-opciones .texto .titulo {
+	display: block;
+	font-size: min(2.6vw, 2.6vh);
+	font-weight: 700;
+}
+
+#opciones .btn-opciones .texto .descripcion {
+	font-size: min(2.6vw, 2.6vh);
+	font-weight: 500;
+}
+
+#opciones .btn-opciones .valor {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+#opciones .btn-opciones .valor .toggle {
+	position: relative;
+	width: 80%;
+	height: min(4vw, 4vh);
+	border-radius: min(4vw, 4vh);
+	background-color: #bfbfbf;
+	padding: min(0.64vw, 0.64vh);
+	transition: background-color .2s;
+}
+#opciones .btn-opciones .valor .toggle::before {
+	content: '';
+	display: block;
+	background-color: white;
+	height: min(2.7vw, 2.7vh);
+	width: min(2.7vw, 2.7vh);
+	border-radius: min(2.7vw, 2.7vh);
+	transition: margin-left .2s;
+}
+
+#opciones .btn-opciones .valor .toggle.active {
+	background-color: #00e18b;
+}
+
+
+#opciones .btn-opciones .valor .toggle.active::before {
+	margin-left: calc(100% - min(2.7vw, 2.7vh));
 }
 
 /* Footer */
 footer {
 	position: fixed;
 	width: 100%;
-	color: #035d3b;
+	color: rgba(0, 0, 0, .5);
 	font-size: min(3vw, 3vh);
 	text-align: center;
 	bottom: min(.6vw, .6vh);
@@ -428,11 +502,11 @@ footer {
 	}
 
 	#btn-menu {
-		width: min(11vw, 11vh);
-		height: min(9vw, 9vh);
+		width: min(14vw, 14vh);
+		height: min(12vw, 12vh);
 		border: min(1vw, 1vh) solid grey;
 		border-bottom: 0 solid transparent;
-		border-radius: min(5vw, 5vh) min(5vw, 5vh) 0 0;
+		border-radius: min(6.5vw, 6.5vh) min(6.5vw, 6.5vh) 0 0;
 		align-items: center;
 		justify-content: center;
 		cursor: pointer;
@@ -456,10 +530,20 @@ footer {
 		transform: translateY(0);
 	}
 
-	#estadisticas h3 {
+	.submenu h3 {
 		margin: 0 10vw;
 		font-size: 7.6vw;
 		line-height: 16vw;
+	}
+
+	#estadisticas h4 {
+		margin: 0 10vw;
+		font-size: 6.4vw;
+		line-height: 8.4vw;
+	}
+
+	#estadisticas h4:nth-child(even) {
+		padding-top: 4vw;
 	}
 
 	#estadisticas .estadistica {
@@ -468,9 +552,42 @@ footer {
 		line-height: 8.4vw;
 	}
 
+	#opciones .btn-opciones {
+		padding: 4vw 6vw;
+		grid-template-columns: 1fr 20vw;
+	}
+
+	#opciones .btn-opciones .texto {
+		padding-right: 2vw;
+	}
+
+	#opciones .btn-opciones .texto .titulo {
+		font-size: 5.2vw;
+	}
+
+	#opciones .btn-opciones .texto .descripcion {
+		font-size: 5.2vw;
+	}
+
+	#opciones .btn-opciones .valor .toggle {
+		height: 8vw;
+		border-radius: 8vw;
+		padding: 1.28vw;
+		transition: background-color .2s;
+	}
+	#opciones .btn-opciones .valor .toggle::before {
+		height: 5.4vw;
+		width: 5.4vw;
+		border-radius: 5.4vw;
+	}
+
+	#opciones .btn-opciones .valor .toggle.active::before {
+		margin-left: calc(100% - 5.4vw);
+	}
+
 	/* Footer */
 	footer {
-		bottom: min(9.8vw, 9.8vh);
+		bottom: min(12.8vw, 12.8vh);
 	}
 }
 
