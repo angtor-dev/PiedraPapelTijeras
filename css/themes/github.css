@@ -1,0 +1,213 @@
+html {
+	--body-bg: #1b1f24;
+
+	--main-color: #00e18b;
+	--main-bg: #24292f;
+	--main-border-color: grey;
+	--main-font-family: "Alliance1","Alliance1Fallback",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+	--main-font-color: white;
+
+	--card-bg: #30363d;
+	--card-title-bg: transparent;
+	--card-border-color: var(--main-border-color);
+	--card-svg-color: #8b949e;
+
+	--border-radius: 6px;
+	--border-width: 1px;
+
+	--hover-color: #1b1f24;
+	--inset-shadow-width: 2px;
+}
+
+#userOptions button, #computerOption > div {
+	box-shadow: 0 0 0 var(--border-width) #000,
+	0 30px 30px rgb(0 0 0 / 7%),
+	0 15px 15px rgb(0 0 0 / 6%),
+	0 10px 8px rgb(0 0 0 / 5%),
+	0 4px 4px rgb(0 0 0 / 4%),
+	0 2px 2px rgb(0 0 0 / 3%),
+	inset 0 var(--inset-shadow-width) 2px rgb(255 255 255 / 10%);
+	border: none;
+	border-radius: var(--border-radius);
+	position: relative;
+	transform-style: preserve-3d;
+}
+
+#userOptions button:hover {
+	box-shadow: 0 0 0 var(--border-width) #000,
+	0 30px 30px rgb(0 0 0 / 7%),
+	0 15px 15px rgb(0 0 0 / 6%),
+	0 10px 8px rgb(0 0 0 / 5%),
+	0 4px 4px rgb(0 0 0 / 4%),
+	0 2px 2px rgb(0 0 0 / 3%),
+	inset 0 var(--inset-shadow-width) 2px rgb(255 255 255 / 10%);
+	transform: translateY(max(-2vw, -2vh));
+}
+
+#userOptions button:active {
+	filter: brightness(var(--active-brightness));
+}
+
+#userOptions button::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(180deg, rgba(120, 117, 255, 0.1) 0%, #84edc1 88.02%);
+	transform: translateZ(-1px);
+	filter: blur(24px);
+	opacity: 0;
+	transition: .2s;
+}
+
+#userOptions button:hover::after {
+	transform: translateZ(-1px) translateY(min(2vw, 2vh));
+	opacity: .5;
+}
+
+#userOptions button span, #computerOption > div span {
+	font-weight: 400;
+}
+
+#userOptions button .card-title, #computerOption > div .card-title {
+	box-shadow: none;
+	padding-top: min(2.2vw, 2.2vh);
+}
+
+#userOptions button .svg-wrapper, #computerOption > div .svg-wrapper {
+	border: none;
+}
+
+#result span {
+	font-weight: 800;
+	color: white;
+	background: -webkit-linear-gradient(45deg, #dab1fd, #e16ca1, #fa807a);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+}
+
+.score-wrapper .score {
+	border: none;
+	border-radius: 0 var(--border-radius) var(--border-radius) 0;
+	box-shadow: 0 0 0 var(--border-width) #000,
+	0 30px 30px rgb(0 0 0 / 30%),
+	0 15px 15px rgb(0 0 0 / 25%),
+	0 10px 8px rgb(0 0 0 / 20%),
+	0 4px 4px rgb(0 0 0 / 15%),
+	0 2px 2px rgb(0 0 0 / 10%),
+	inset 0 var(--inset-shadow-width) 2px rgb(255 255 255 / 10%);
+}
+
+/* Menu */
+#main-menu {
+	margin: min(2vw, 2vh);
+	border-left: none;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 0 var(--border-width) #000,
+				0 30px 30px rgb(0 0 0 / 7%),
+				0 15px 15px rgb(0 0 0 / 6%),
+				0 10px 8px rgb(0 0 0 / 5%),
+				0 4px 4px rgb(0 0 0 / 4%),
+				0 2px 2px rgb(0 0 0 / 3%),
+				inset 0 var(--inset-shadow-width) 2px rgb(255 255 255 / 10%);
+    transform: translateX(min(52vw, 52vh));
+}
+
+#btn-menu {
+    border: none;
+	border-radius: var(--border-radius) 0 0 var(--border-radius);
+    box-shadow: 0 0 0 var(--border-width) #000,
+				0 30px 30px rgb(0 0 0 / 7%),
+				0 15px 15px rgb(0 0 0 / 6%),
+				0 10px 8px rgb(0 0 0 / 5%),
+				0 4px 4px rgb(0 0 0 / 4%),
+				0 2px 2px rgb(0 0 0 / 3%),
+				inset 0 var(--inset-shadow-width) 2px rgb(255 255 255 / 10%);
+}
+
+.submenu {
+	margin: min(2vw, 2vh);
+	border-left: none;
+	border-radius: var(--border-radius);
+	box-shadow: 0 0 0 var(--border-width) #000,
+	inset 0 var(--inset-shadow-width) 2px rgb(255 255 255 / 10%);
+    transform: translateX(min(52vw, 52vh));
+}
+
+.btn {
+	border-radius: var(--border-radius);
+}
+
+.btn:hover {
+	box-shadow: 0 0 0 var(--border-width) #000,
+				0 30px 30px rgb(0 0 0 / 7%),
+				0 15px 15px rgb(0 0 0 / 6%),
+				0 10px 8px rgb(0 0 0 / 5%),
+				0 4px 4px rgb(0 0 0 / 4%),
+				0 2px 2px rgb(0 0 0 / 3%),
+				inset 0 var(--inset-shadow-width) 2px rgb(255 255 255 / 10%);
+	background-color: var(--card-bg);
+	color: var(--main-font-color);
+}
+
+#estadisticas .estadistica:nth-child(even) {
+	background-color: var(--body-bg);
+}
+
+footer {
+	color: #8b949e;
+	font-family: consolas, monospace;
+}
+
+footer::before {
+	content: '//';
+}
+
+@keyframes rotate3d {
+	from {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+
+	49% {
+		opacity: 0;
+		transform: translateX(50%);
+	}
+
+	51% {
+		opacity: 0;
+		transform: translateX(-50%);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateX(0%);
+	}
+}
+
+@media screen and (orientation: portrait) {
+	html {
+		--border-radius: 12px;
+		--border-width: 2px;
+		--inset-shadow-width: 4px;
+	}
+
+	.score-wrapper .score {
+		border-radius: 0 0 var(--border-radius) var(--border-radius);
+	}
+
+	#main-menu, .submenu {
+		bottom: 5vw;
+		margin: 0;
+		border: none;
+		border-radius: 12px;
+		transform: translateY(100vh);
+	}
+
+	#btn-menu {
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
+	}
+}

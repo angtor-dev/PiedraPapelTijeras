@@ -1,0 +1,28 @@
+html {
+	--body-bg: linear-gradient(to right, #ff9068, #fd746c);
+
+	--main-color: #fd746c;
+	--main-bg: #ffc7b3;
+	--main-border-color: #7f4435;
+
+	--card-bg: var(--main-bg);
+	--card-title-bg: #ff564c;
+	--card-border-color: var(--main-border-color);
+	
+	--disable-color: #d3a494;
+
+	--hover-color: #fe7f6a;
+	--font-color-dark: #571c19;
+}
+
+.btn:hover {
+	color: var(--font-color-dark);
+}
+
+#estadisticas h4 {
+	background-color: var(--hover-color);
+}
+
+#estadisticas .estadistica:nth-child(even) {
+    background-color: #fcab8e;
+}

@@ -4,10 +4,17 @@
 	<title>Piedra, Papel o Tijeras</title>
 	<meta charset="utf-8">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link id="tema-css" rel="stylesheet" type="text/css" href="css/themes/original.css">
+
+	<script type="text/javascript">
+		let tema = localStorage.tema ?? 'original'
+		document.getElementById('tema-css').setAttribute('href', 'css/themes/'+tema+'.css') // carga tema actual
+	</script>
+	<link rel="Shortcut Icon" href="favicon.png">
+	<!-- Google Fonts -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-	<link rel="Shortcut Icon" href="favicon.png">
 	<script defer src="js/solid.min.js"></script>
 	<script defer src="js/regular.min.js"></script>
 	<script defer src="js/fontawesome.min.js"></script>
@@ -98,10 +105,14 @@
 				<span>Opciones</span>
 				<i class="fa-solid fa-cog fa-fw"></i>
 			</div>
+			<div class="btn btn-menu sub" data-id="acerca">
+				<span>Acerca</span>
+				<i class="fa-solid fa-circle-info fa-fw"></i>
+			</div>
 		</div>
 
 		<div class="submenu estadisticas" id="estadisticas">
-			<div class="btn btn-estadisticas volver">
+			<div class="btn volver">
 				<span>volver</span>
 				<i class="fa-solid fa-arrow-right fa-fw"></i>
 			</div>
@@ -123,6 +134,27 @@
 			<p class="estadistica" title="Racha de victorias más alta">Racha de vic. más alta: <span id="std-totalRachaVicMax">0</span></p>
 		</div>
 
+		<div class="submenu temas" id="temas">
+			<div class="btn volver">
+				<span>volver</span>
+				<i class="fa-solid fa-arrow-right fa-fw"></i>
+			</div>
+			<h3>Temas</h3>
+
+			<div class="btn btn-tema" data-tema="original">
+				<span>Original</span>
+				<div class="icono-tema original"></div>
+			</div>
+			<div class="btn btn-tema" data-tema="salmon">
+				<span>Salmón</span>
+				<div class="icono-tema salmon"></div>
+			</div>
+			<div class="btn btn-tema" data-tema="github">
+				<span>GitHub</span>
+				<div class="icono-tema github"></div>
+			</div>
+		</div>
+
 		<div class="submenu opciones" id="opciones">
 			<div class="btn volver">
 				<span>volver</span>
@@ -142,6 +174,16 @@
 					<div class="toggle"></div>
 				</div>
 			</div>
+		</div>
+
+		<div class="submenu acerca" id="acerca">
+			<div class="btn volver">
+				<span>volver</span>
+				<i class="fa-solid fa-arrow-right fa-fw"></i>
+			</div>
+			<h3>Acerca de</h3>
+
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat possimus dicta voluptates obcaecati sapiente vero expedita inventore dolorum ipsum molestiae dolore doloribus quas ab illo, maiores omnis? Amet, ipsam provident.</p>
 		</div>
 	</div>
 

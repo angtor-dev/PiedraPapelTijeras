@@ -12,6 +12,7 @@ const backButtons = document.querySelectorAll('.btn.volver')
 // Variables
 var result = "" //guarda el ultimo resultado de la partida
 
+	// Estadisticas
 const Estadisticas = {
 	get partidas() {return this.victorias + this.empates + this.derrotas},
 	get totalPartidas() {return this.totalVictorias + this.totalEmpates + this.totalDerrotas},
@@ -26,10 +27,11 @@ const Estadisticas = {
 	totalRachaVicMax: 0,
 }
 
-const opcionesPredeterminadas = Object.freeze({
+	// Opciones
+const opcionesPredeterminadas = {
 	showTotalScore: false,
 	darkMode: false
-})
+}
 
 let opcionesLocal = localStorage.opciones
 if (opcionesLocal !== undefined) {
@@ -52,6 +54,7 @@ submenus.forEach(submenu => submenu.addEventListener('click', (e) => e.stopPropa
 backButtons.forEach(button => button.addEventListener('click', closeSubmenu))
 submenuButtons.forEach(button => button.addEventListener('click', openSubmenu))
 document.querySelectorAll('.btn-opciones.toggle').forEach(button => button.addEventListener('click', toggleOption))
+document.querySelectorAll('.btn-tema').forEach(button => button.addEventListener('click', changeTheme))
 
 	// Al pulsar una carta
 userOptions.forEach(card => card.addEventListener('click', (e) => {
@@ -225,6 +228,14 @@ function updateStats() {
 		document.getElementById('std-'+estadistica).textContent = Estadisticas[estadistica];
 	}
     localStorage.estadisticas = JSON.stringify(Estadisticas)
+}
+
+function changeTheme() {
+	const css = document.getElementById('tema-css')
+	let tema = this.dataset.tema
+
+	css.setAttribute('href', 'css/themes/'+tema+'.css')
+	localStorage.tema = tema
 }
 
 function updateOptions() {
