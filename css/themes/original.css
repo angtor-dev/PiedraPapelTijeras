@@ -1,0 +1,11 @@
+html {
+	--body-bg: #08f79c;
+
+	--main-color: #00e18b;
+	--main-bg: #f0f0f0;
+	--main-border-color: grey;
+
+	--card-bg: var(--main-bg);
+	--card-title-bg: var(--main-bg);
+	--card-border-color: var(--main-border-color);
+}
